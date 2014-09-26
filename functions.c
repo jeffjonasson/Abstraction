@@ -88,7 +88,7 @@ void update_entry(Node list){
 }
 
 
-void insert_entry(Node list){
+Node insert_entry(Node list){
   char buffer[128];
   int found = 0;
   Node cursor = list;
@@ -118,6 +118,7 @@ void insert_entry(Node list){
     puts("Entry inserted successfully:");
     printf("key: %s\nvalue: %s\n", list->key, list->value);
   }
+  return list;
 }
 
 Node delete_entry(Node list){
