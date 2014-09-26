@@ -15,9 +15,8 @@ int main(int argc, char *argv[]){
   puts("    \\/___/  \\/___/  ");
   puts("");
 
-  char *filename = *(argv +1);
-
-  Node list = read_database(filename);
+  char *filename = *(argv +1); //filename = pointer to argument vector
+  Node list = read_database(filename); //list = an array of characters
 
   // Main loop
   int choice = -1;
