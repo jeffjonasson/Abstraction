@@ -18,7 +18,7 @@ void update_entry(Node list);
 
 //insert_database
 //takes a Node as input, returns the database with a new node inserted.
-Node insert_entry(Node list);
+void insert_entry(Node list);
 
 //delete_entry
 //takes a Node as input, returns the database with a (user specified) node deleted.
