@@ -14,7 +14,7 @@ void query_database(Node list);
 
 //update_database
 //Takes a Node as input, has no return value. Updates an entry in the database.
-void update_database(Node list);
+void update_entry(Node list);
 
 //insert_database
 //takes a Node as input, returns the database with a new node inserted.

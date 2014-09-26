@@ -1,6 +1,8 @@
 #include "header.h"
 
 int main(int argc, char *argv[]){
+  //checks if a database file is given as argument.
+  // If not terminates the program.
   if (argc < 2){
     puts("Usage: db [FILE]");
     return -1;
@@ -33,7 +35,7 @@ int main(int argc, char *argv[]){
     while(getchar() != '\n'); // Clear stdin
     switch(choice){
     case 1: query_database(list); break;      // Query
-    case 2: update_database(list); break;     // Update
+    case 2: update_entry(list); break;     // Update
     case 3: insert_entry(list); break; // Insert
     case 4: delete_entry(list); break; // Delete
     case 5: print_database(list); break;  // Print database
@@ -46,4 +48,3 @@ int main(int argc, char *argv[]){
   }
   return 0;
 }
-

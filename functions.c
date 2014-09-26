@@ -57,7 +57,7 @@ void query_database(Node list){
       }
 }
 
-void update_database(Node list){
+void update_entry(Node list){
   printf("Enter key: ");
   char buffer[128];
   int found;
