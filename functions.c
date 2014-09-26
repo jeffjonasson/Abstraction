@@ -25,11 +25,11 @@ Node read_database(char* databaso){
   while(!(feof(database))){
     Node newNode = malloc(sizeof(struct node));
     readline(buffer, 128, database);
-    newNode->key = malloc(strlen(buffer) + 1);
-    strcpy(newNode->key, buffer);
-    readline(buffer, 128, database);
-    newNode->value = malloc(strlen(buffer) + 1);
-    strcpy(newNode->value, buffer);
+    newNode->key = malloc(strlen(buffer) + 1); //allocates memory to store buffer value
+    strcpy(newNode->key, buffer); //copies contents of buffer to newNode->key
+    readline(buffer, 128, database); //reads a line from database, stores in buffer
+    newNode->value = malloc(strlen(buffer) + 1); //allocates memory to store buffer value
+    strcpy(newNode->value, buffer);  //copies contents of buffer to newNode->value
     newNode->next = list;
     list = newNode;
   }
@@ -88,15 +88,13 @@ void update_entry(Node list){
 }
 
 
-Node insert_entry(Node list){
-  printf("Enter key: ");
+void insert_entry(Node list){
   char buffer[128];
-  int found;
-  Node cursor;
+  int found = 0;
+  Node cursor = list;
+  printf("Enter key: ");
   readline(buffer, 128, stdin);
   puts("Searching database for duplicate keys...");
-  found = 0;
-  cursor = list;
   while(!found && cursor != NULL){
     if(strcmp(buffer, cursor->key) == 0){
       printf("key \"%s\" already exists!\n", cursor->key);
@@ -120,7 +118,6 @@ Node insert_entry(Node list){
     puts("Entry inserted successfully:");
     printf("key: %s\nvalue: %s\n", list->key, list->value);
   }
-  return list;
 }
 
 Node delete_entry(Node list){
@@ -160,3 +157,4 @@ void print_database(Node list){
     cursor = cursor->next;
   }     
 }
+
