@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdio.h>
 
 int main(int argc, char *argv[]){
   //checks if a database file is given as argument.
@@ -17,7 +18,7 @@ int main(int argc, char *argv[]){
   puts("    \\/___/  \\/___/  ");
   puts("");
 
-  char *filename = *(argv +1); //filename = pointer to argument vector
+  char *filename = *(argv +1); //filename = pointer to argument vector (equivalent to argv[1]).
   Node list = read_database(filename); //list = an array of characters
 
   // Main loop
