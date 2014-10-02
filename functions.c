@@ -4,9 +4,6 @@ Pouya Ashraf
 Jeff Jonasson
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "header.h"
 
 struct node{
@@ -48,13 +45,13 @@ Node read_database(char* filename){
   FILE *database = fopen(filename, "r");
   char keybuffer[128];
   char valuebuffer[128];
-  Node list = NULL;
+  Node newNode = NULL;
   while(!(feof(database))){ //while NOT at the end of database file...
-    readline(keybuffer, 128, database); //get the desired key from sdtin and store in "keybuffer"
-    readline(valuebuffer, 128, database); //get the desired value from stdin and store in "valuebuffer"
-    list = btree(keybuffer, valuebuffer, list); //call function btree to contruct a binary tree.
+    readline(keybuffer, 128, database); //get the key from sdtin and store in "keybuffer"
+    readline(valuebuffer, 128, database); //get the value from stdin and store in "valuebuffer"
+    newNode = btree(keybuffer, valuebuffer, newNode); //call function btree to contruct a binary tree.
   }
-  return list;
+  return newNode;
 }
 
 //queries the database for an entry. Takes a node as input.
@@ -132,14 +129,14 @@ Node insert_entry(Node list){
       printf("key \"%s\" already exists!\n", cursor->key);
       found = 1;
     } else {
-      if(strcmp(keybuffer, cursor->key) < 0){
-	cursor = cursor->left;
-      } else {
+      if(strcmp(keybuffer, cursor->key) > 0){
 	cursor = cursor->right;
+      } else {
+	cursor = cursor->left;
       }
     }
   }
-  if(!found){ // Insert new node to the front of the list
+  if(!found){  //newNode becomes the first element in the list.
     puts("Key is unique!\n");
     printf("Enter value: ");
     readline(valuebuffer, 128, stdin);
@@ -158,7 +155,8 @@ Node minimum(Node list){
   } if(list->left){
     return minimum(list->left);
   } else {
-    return list;}
+    return list;
+  }
 }
 
 
@@ -169,27 +167,28 @@ Node deleteExternal(Node list, char *key){
   } else {
     if(strcmp(key, list->key) < 0){
       list->left = deleteExternal(list->left, key);
-    } else if(strcmp(key, list->key) > 0){
-      list->right = deleteExternal(list->right, key);
     } else {
-      printf("Deleted entry:\n key: %s\n value:\n %s", list->key, list->value);
-      if(list->left == NULL){
-	list = list->right;
+      if(strcmp(key, list->key) > 0){
+	list->right = deleteExternal(list->right, key);
       } else {
-	if(list->right == NULL){
-	  list = list->left;
+	printf("Deleted entry:\n key: %s\n value:\n %s", list->key, list->value);
+	if(list->left == NULL){
+	  list = list->right;
 	} else {
-	  helper = minimum(list->right);
-	  list->key = helper->key;
-	  list->right = deleteExternal(list->right, helper->key);
-	  free(helper);
+	  if(list->right == NULL){
+	    list = list->left;
+	  } else {
+	    helper = minimum(list->right);
+	    list->key = helper->key;
+	    list->right = deleteExternal(list->right, helper->key);
+	    free(helper);
+	  }
 	}
       }
     }
   }
   return list;
 }
-
 
 Node delete_entry(Node list){
   char keybuffer[128];
@@ -200,8 +199,7 @@ Node delete_entry(Node list){
   return list;
 }
 
-void print_database(Node list){
-  Node cursor = list;
+void print_database(Node cursor){
   if(cursor){
     print_database(cursor->right);
     puts(cursor->key);
