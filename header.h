@@ -2,29 +2,57 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 typedef struct node *Node;
 
-//read_database
-//reads the contents of given database file
+
+/**
+ * @brief A struct for a node in the database
+ * @details A node in the database containing the key and a value.
+ * 
+ * @param filename path to the database file
+ * @return A node in the database.
+ */
 Node read_database(char *filename);
 
-//query_database
-//takes a Node as input, No return value. Queries the database for an entry.
+/**
+ * @brief Function to query the database for a stored value.
+ * @details Queries the database for the key specified by the user.
+ * 
+ * @param list the database stored in memory.
+ */
 void query_database(Node list);
 
-//update_database
-//Takes a Node as input, has no return value. Updates an entry in the database.
+/**
+ * @brief Function to update an entry in the databse.
+ * @details 
+ * 
+ * @param list The database stored in memory.
+ */
 void update_entry(Node list);
 
-//insert_database
-//takes a Node as input, returns the database with a new node inserted.
+/**
+ * @brief Function to insert a new entry in the database.
+ * @details Inserts a new entry in the database. Key and value a prompted from the user when the function is called.
+ * 
+ * @param list The database stored in memory.
+ * @return The databse with the new node inserted.
+ */
 Node insert_entry(Node list);
 
-//delete_entry
-//takes a Node as input, returns the database with a (user specified) node deleted.
+/**
+ * @brief Function to delete an entry from the database.
+ * @details Deletes an entry from the database. Prompts the user for which entry to delete when function is called.
+ * 
+ * @param list The database stored in memory.
+ * @return The database with specified entry removed.
+ */
 Node delete_entry(Node list);
 
-//print_database
-//takes a Node as input, no return value, prints the contents of 
-//database to standard output stream
+/**
+ * @brief prints the database.
+ * @details Prints the contents of the database to standard output.
+ * 
+ * @param list the database stored in memory.
+ */
 void print_database(Node list);

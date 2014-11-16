@@ -1,9 +1,3 @@
-/*
-AUTHORS:
-Pouya Ashraf
-Jeff Jonasson
-*/
-
 #include "header.h"
 
 struct node{
@@ -14,7 +8,7 @@ struct node{
 };
 
 
-Node btree(char *key, char *value, Node newNode){
+Node btree(void *key, void *value, Node newNode){
   if(newNode == NULL){
     Node newNode = malloc(sizeof(struct node)); //allocates memory for the new node
     newNode->key = malloc(strlen(key) + 1); //allocates memory for the key...
