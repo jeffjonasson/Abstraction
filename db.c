@@ -43,10 +43,10 @@ int main(int argc, char *argv[]){
       update_entry(list); 
       break;     // Update
     case 3:
-      insert_entry(list);
+      list = insert_entry(list);
       break; // Insert
     case 4:
-      delete_entry(list);
+      list = delete_entry(list);
       break; // Delete
     case 5:
       print_database(list);
