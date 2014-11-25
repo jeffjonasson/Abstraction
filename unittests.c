@@ -25,7 +25,7 @@ void testBtree(void){
   testNode->key = malloc(sizeof(testKey));
   testNode->value = malloc(sizeof(testValue));
 
-  Node testNode2 = btree(testKey, testValue, NULL);
+  //Node testNode2 = btree(testKey, testValue, NULL);
 
   CU_ASSERT(strcmp(testKey, testNode->key));
   CU_ASSERT(strcmp(testValue, testNode->value));
