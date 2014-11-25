@@ -28,5 +28,5 @@ test: unittests.c functions.c header.h
 	$(CC) $(CFLAGS) unittests.c functions.c -o unittests -lcunit
 
 testrun: unittests.c functions.c header.h
-	$(C_COMPILER) $(C_OPTIONS) unittests.c functions.c -o unittests -lcunit
+	$(CC) $(CFLAGS) unittests.c functions.c -o unittests -lcunit
 	./unittests
