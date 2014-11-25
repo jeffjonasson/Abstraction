@@ -1,12 +1,12 @@
 #include "header.h"
 
-struct node{
+/*struct node{
   char *key;
   char *value;
   struct node *left;
   struct node *right;
 };
-
+*/
 
 Node btree(void *key, void *value, Node newNode){
   if(newNode == NULL){
