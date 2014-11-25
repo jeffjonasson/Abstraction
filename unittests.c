@@ -29,7 +29,7 @@ void testBtree(void){
 
   CU_ASSERT(strcmp(testKey, testNode->key));
   CU_ASSERT(strcmp(testValue, testNode->value));
-};
+}
 
 
 int main(){

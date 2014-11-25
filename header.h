@@ -3,8 +3,14 @@
 #include <string.h>
 
 
-typedef struct node *Node;
+//typedef struct node *Node;
 
+typedef struct node{
+  char *key;
+  char *value;
+  struct node *left;
+  struct node *right;
+} *Node;
 
 /**
  * @brief A struct for a node in the database
