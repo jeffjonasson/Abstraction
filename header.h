@@ -21,6 +21,15 @@ typedef struct node{
  */
 Node read_database(char *filename);
 
+/**
+ * @brief inserts a node
+ * @details inserts a node in the tree with specified key and value
+ * 
+ * @param key key
+ * @param value value
+ * @param newNode the tree
+ * @return the tree with a new node inserted in the correct place.
+ */
 Node btree(void *key, void *value, Node newNode);
 
 /**

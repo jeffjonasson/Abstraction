@@ -10,10 +10,10 @@
 
 Node btree(void *key, void *value, Node newNode){
   if(newNode == NULL){
-    Node newNode = malloc(sizeof(struct node)); //allocates memory for the new node
-    newNode->key = malloc(strlen(key) + 1); //allocates memory for the key...
-    strcpy(newNode->key, key); //copies contents of key to newNode->key
-    newNode->value = malloc(strlen(value) + 1); //..and the value
+    Node newNode = malloc(sizeof(struct node));
+    newNode->key = malloc(strlen(key) + 1);
+    strcpy(newNode->key, key); 
+    newNode->value = malloc(strlen(value) + 1); 
     strcpy(newNode->value, value);
     newNode->right = NULL;
     newNode->left = NULL;
@@ -33,22 +33,22 @@ void readline(char *dest, int n, FILE *source){
     dest[len-1] = '\0';
 }
 
-//Loads the contents of the database file inte memory.
+
 Node read_database(char* filename){
   printf("Loading database \"%s\"...\n\n", filename);
   FILE *database = fopen(filename, "r");
   char keybuffer[128];
   char valuebuffer[128];
   Node newNode = NULL;
-  while(!(feof(database))){ //while NOT at the end of database file...
-    readline(keybuffer, 128, database); //get the key from sdtin and store in "keybuffer"
-    readline(valuebuffer, 128, database); //get the value from stdin and store in "valuebuffer"
-    newNode = btree(keybuffer, valuebuffer, newNode); //call function btree to contruct a binary tree.
+  while(!(feof(database))){ 
+    readline(keybuffer, 128, database); 
+    readline(valuebuffer, 128, database); 
+    newNode = btree(keybuffer, valuebuffer, newNode);
   }
   return newNode;
 }
 
-//queries the database for an entry. Takes a node as input.
+
 void query_database(Node list){
  printf("Enter key: ");
  char buffer[128];
@@ -74,7 +74,7 @@ void query_database(Node list){
       }
 }
 
-//updates the value of a user specified key in the database. Takes a Node as input.
+
 void update_entry(Node list){
   printf("Enter key: ");
   char buffer[128];
@@ -130,7 +130,7 @@ Node insert_entry(Node list){
       }
     }
   }
-  if(!found){  //newNode becomes the first element in the list.
+  if(!found){  
     puts("Key is unique!\n");
     printf("Enter value: ");
     readline(valuebuffer, 128, stdin);
@@ -186,7 +186,7 @@ Node deleteExternal(Node list, char *key){
 
 Node delete_entry(Node list){
   char keybuffer[128];
-  puts("Enter key: "); //a magical function of unknown capacity
+  puts("Enter key: "); 
   readline(keybuffer, 128, stdin);
   puts("Searching database...\n");
   list = deleteExternal(list, keybuffer);
