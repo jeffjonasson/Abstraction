@@ -50,7 +50,7 @@ int main(){
     }
 
    if (
-    (NULL == CU_add_test(pSuite1, "test if test works", testBtree)
+    (NULL == CU_add_test(pSuite1, "test if test works", testBtree))
   )
     {
       CU_cleanup_registry();
