@@ -1,6 +1,5 @@
 #include "CUnit/Basic.h"
 #include "header.h"
-#include <stdlib.h>
 
 int init_suite_1(void){
   return 0;
@@ -18,10 +17,20 @@ int clean_suite_2(void){
   return 0;
 }
 
-void testFive(){
-  int temp = 5;
-  CU_ASSERT(temp == 5);
-}
+void testBtree(char *testKey, char *testValue, Node newNode){
+
+  Node testNode = malloc(sizeof(Node));
+  char *testKey = malloc(sizeof(testKey));
+  char *testValue = malloc(sizeof(testValue));
+  char *testNode->key = "Anna";
+  char *testNode->value = "01";
+
+  Node testNode2 = btree(testKey, testValue, NULL);
+
+  CU_ASSERT(testNode->key == testNode2->key);
+  CU_ASSERT(testNode->value == testNode2->value);
+};
+
 
 int main(){
   CU_pSuite pSuite1 = NULL;
