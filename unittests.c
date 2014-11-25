@@ -24,13 +24,13 @@ void testBtree(void){
   Node testNode = malloc(sizeof(Node));
   newNode->key = malloc(sizeof(testKey));
   newNode->Value = malloc(sizeof(testValue));
-  testNode->key = testKey;
-  testNode->value = testValue;
+  strcpy(testNode->key, testKey);
+  strcpy(testNode->value = testValue);
 
   Node testNode2 = btree(testKey, testValue, NULL);
 
-  CU_ASSERT(testNode->key == testNode2->key);
-  CU_ASSERT(testNode->value == testNode2->value);
+  CU_ASSERT(testKey == testNode2->key);
+  CU_ASSERT(testValue == testNode2->value);
 };
 
 
@@ -50,7 +50,7 @@ int main(){
     }
 
    if (
-    (NULL == CU_add_test(pSuite1, "test if test works", testBtree()))
+    (NULL == CU_add_test(pSuite1, "test if test works", testBtree)
   )
     {
       CU_cleanup_registry();
