@@ -22,15 +22,13 @@ void testBtree(void){
   char *testKey = "Anna";
   char *testValue = "01";
   Node testNode = malloc(sizeof(Node));
-  newNode->key = malloc(sizeof(testKey));
-  newNode->Value = malloc(sizeof(testValue));
-  strcpy(testNode->key, testKey);
-  strcpy(testNode->value = testValue);
+  testNode->key = malloc(sizeof(testKey));
+  testNode->value = malloc(sizeof(testValue));
 
   Node testNode2 = btree(testKey, testValue, NULL);
 
-  CU_ASSERT(testKey == testNode2->key);
-  CU_ASSERT(testValue == testNode2->value);
+  CU_ASSERT(strcmp(testKey, testNode->key));
+  CU_ASSERT(strcmp(testValue, testNode->value));
 };
 
 
