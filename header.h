@@ -15,6 +15,8 @@ typedef struct node *Node;
  */
 Node read_database(char *filename);
 
+Node btree(void *key, void *value, Node newNode);
+
 /**
  * @brief Function to query the database for a stored value.
  * @details Queries the database for the key specified by the user.
