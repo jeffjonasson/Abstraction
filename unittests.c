@@ -1,4 +1,5 @@
 #include "CUnit/Basic.h"
+#include "header.h"
 #include <stdlib.h>
 
 int init_suite_1(void){
@@ -24,7 +25,6 @@ void testFive(){
 
 int main(){
   CU_pSuite pSuite1 = NULL;
-  CU_pSuite pSuite2 = NULL;
 
   /* initialize the CUnit test registry */
   if (CUE_SUCCESS != CU_initialize_registry())
@@ -33,12 +33,6 @@ int main(){
   /* add a suites to the registry */
   pSuite1 = CU_add_suite("Basic Functions Suite", init_suite_1, clean_suite_1);
   if (NULL == pSuite1)
-    {
-      CU_cleanup_registry();
-      return CU_get_error();
-    }
-  pSuite2 = CU_add_suite("Advanced Functions Suite", init_suite_2, clean_suite_2);
-  if (NULL == pSuite2)
     {
       CU_cleanup_registry();
       return CU_get_error();
