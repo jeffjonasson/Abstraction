@@ -17,18 +17,30 @@ int clean_suite_2(void){
   return 0;
 }
 
-void testBtree(void){
+void TEST_Btree(void){
 
   char *testKey = "Anna";
   char *testValue = "01";
-  Node testNode = malloc(sizeof(Node));
-  testNode->key = malloc(sizeof(testKey));
-  testNode->value = malloc(sizeof(testValue));
 
-  //Node testNode2 = btree(testKey, testValue, NULL);
+  char *testKeyLeft = "Aaron";
+  char *testValueLeft = "02";
+
+  char *testKeyRight = "Bodil";
+  char *testValueRight = "03";
+
+  /*construcy a binary tree for testing*/
+  Node testNode = btree(testKey, testValue, NULL);
+  Node testNode = btree(testKeyLeft, testValueLeft, testNode);
+  Node testNode = btree(testKeyRight, testValueRight, testNode);
 
   CU_ASSERT(strcmp(testKey, testNode->key));
   CU_ASSERT(strcmp(testValue, testNode->value));
+
+  CU_ASSERT(strcmp(testKeyLeft, testNode->left->key));
+  CU_ASSERT(strcmp(testValueLeft, testNode->left->value));
+
+  CU_ASSERT(strcmp(testKeyRight, testNode->right->key));
+  CU_ASSERT(strcmp(testValueLeft, testNode->right->value);
 }
 
 
@@ -48,7 +60,7 @@ int main(){
     }
 
    if (
-    (NULL == CU_add_test(pSuite1, "test if test works", testBtree))
+    (NULL == CU_add_test(pSuite1, "test if test works", TEST_Btree))
   )
     {
       CU_cleanup_registry();
