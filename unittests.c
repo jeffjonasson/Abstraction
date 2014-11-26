@@ -9,6 +9,15 @@ int clean_suite_1(void){
   return 0;
 }
 
+int init_suite_2(void){
+  return 0;
+}
+
+int clean_suite_2(void){
+  return 0;
+}
+
+
 void TEST_Btree(void){
 
   char *testKey = "Anna";
