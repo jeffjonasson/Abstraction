@@ -25,8 +25,8 @@ clean:
 	rm -rf *#
 
 test: unittests.c functions.c header.h
-	$(CC) $(CFLAGS) unittests.c functions.c -o unittests -lcunit
+	$(CC) $(CFLAGS) -o -lcunit unittests unittests.c functions.c
 
 testrun: unittests.c functions.c header.h
-	$(CC) $(CFLAGS) unittests.c functions.c -o unittests -lcunit
+	$(CC) $(CFLAGS) -o -lcunit unittests unittests.c functions.c
 	./unittests
