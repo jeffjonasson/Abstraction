@@ -2,26 +2,24 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]){
-  //checks if a database file is given as argument.
-  // If not terminates the program.
+
   if (argc < 2){
     puts("Usage: db [FILE]");
     return -1;
   }
-  puts("Welcome to");
-  puts(" ____    ____       ");
-  puts("/\\  _`\\ /\\  _`\\     ");
-  puts("\\ \\ \\/\\ \\ \\ \\L\\ \\   ");
-  puts(" \\ \\ \\ \\ \\ \\  _ <\\ ");
-  puts("  \\ \\ \\_\\ \\ \\ \\L\\ \\ ");
-  puts("   \\ \\____/\\ \\____/ ");
-  puts("    \\/___/  \\/___/  ");
-  puts("");
 
-  char *filename = *(argv +1); //filename = pointer to argument vector (equivalent to argv[1]).
-  Node list = read_database(filename); //list = an array of characters
+  char querybuffer[128];
+  char updatekey[128];
+  char updatevalue[128];
+  char insertkey[128];
+  char insertvalue[128];
+  char deletekey[128];
 
-  // Main loop
+  
+  char *filename = *(argv +1); 
+  Node list = read_database(filename); 
+
+
   int choice = -1;
   while(choice != 0){
     puts("Please choose an operation");
@@ -33,23 +31,32 @@ int main(int argc, char *argv[]){
     puts("0. Exit database");
     printf("? \n");
     scanf("%d", &choice);
-    while(getchar() != '\n'); // Clear stdin
+    while(getchar() != '\n'); 
     switch(choice){
 
     case 1: 
-      char querybuffer[128];
-      printf("Enter Key:");
+      printf("Enter Key: ");
       readline(querybuffer, 128, stdin);
       query_database(list, querybuffer);
       break;      // Query
     case 2: 
-      update_entry(list); 
+      printf("Enter Key: ");
+      readline(updatekey, 128, stdin);
+      printf("Enter Value ");
+      readline(updatevalue, 128, stdin);
+      update_entry(list, updatekey, updatevalue); 
       break;     // Update
     case 3:
-      list = insert_entry(list);
+      printf("Enter Key: ");
+      readline(insertkey, 128, stdin);
+      printf("Enter Value ");
+      readline(insertvalue, 128, stdin);
+      list = insert_entry(list, insertkey, insertvalue);
       break; // Insert
     case 4:
-      list = delete_entry(list);
+      printf("Enter Key: ");
+      readline(deletekey, 128, stdin);
+      list = delete_entry(list, deletekey);
       break; // Delete
     case 5:
       print_database(list);

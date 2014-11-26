@@ -74,22 +74,19 @@ void query_database(Node list, char *query){
 }
 
 
-void update_entry(Node list){
-  printf("Enter key: ");
-  char buffer[128];
+void update_entry(Node list, char *key, char *value){
   int found;
   Node cursor;
-  readline(buffer, 128, stdin);
   puts("Searching database...\n");
   found = 0;
   cursor = list;
   while(!found && cursor != NULL){
-    if(strcmp(buffer, cursor->key) == 0){
+    if(strcmp(key, cursor->key) == 0){
       puts("Matching entry found:");
       printf("key: %s\nvalue: %s\n\n", cursor->key, cursor->value);
       found = 1;
     } else{
-      if(strcmp(buffer, cursor->key) > 0){
+      if(strcmp(key, cursor->key) > 0){
       cursor = cursor->right;
       } else {
       cursor = cursor->left;
@@ -97,32 +94,26 @@ void update_entry(Node list){
     }
   }
   if(!found){
-    printf("Could not find an entry matching key \"%s\"!\n", buffer);
+    printf("Could not find an entry matching key \"%s\"!\n", key);
   }else{
-    printf("Enter new value: ");
-    readline(buffer, 128, stdin);
     free(cursor->value);
-    cursor->value = malloc(strlen(buffer) + 1);
-    strcpy(cursor->value, buffer);
+    cursor->value = malloc(strlen(value) + 1);
+    strcpy(cursor->value, value);
     puts("Value inserted successfully!");
   }
 }
 
 
-Node insert_entry(Node list){
-  char keybuffer[128];
-  char valuebuffer[128];
+Node insert_entry(Node list, char *key, char *value){
   int found = 0;
   Node cursor = list;
-  printf("Enter key: ");
-  readline(keybuffer, 128, stdin);
   puts("Searching database for duplicate keys...");
   while(!found && cursor != NULL){
-    if(strcmp(keybuffer, cursor->key) == 0){
+    if(strcmp(key, cursor->key) == 0){
       printf("key \"%s\" already exists!\n", cursor->key);
       found = 1;
     } else {
-      if(strcmp(keybuffer, cursor->key) > 0){
+      if(strcmp(key, cursor->key) > 0){
 	cursor = cursor->right;
       } else {
 	cursor = cursor->left;
@@ -130,13 +121,10 @@ Node insert_entry(Node list){
     }
   }
   if(!found){  
-    puts("Key is unique!\n");
-    printf("Enter value: ");
-    readline(valuebuffer, 128, stdin);
-    btree(keybuffer, valuebuffer, list);
+    btree(key, value, list);
     puts("");
     puts("Entry inserted successfully:");
-    printf("key: %s\nvalue: %s\n", keybuffer, valuebuffer);
+    printf("key: %s\nvalue: %s\n", key, value);
   }
   return list;
 }
@@ -183,12 +171,9 @@ Node deleteExternal(Node list, char *key){
   return list;
 }
 
-Node delete_entry(Node list){
-  char keybuffer[128];
-  puts("Enter key: "); 
-  readline(keybuffer, 128, stdin);
+Node delete_entry(Node list, char *key){
   puts("Searching database...\n");
-  list = deleteExternal(list, keybuffer);
+  list = deleteExternal(list, key);
   return list;
 }
 

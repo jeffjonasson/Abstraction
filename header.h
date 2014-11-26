@@ -57,26 +57,31 @@ void query_database(Node list, char *query);
  * @details 
  * 
  * @param list The database stored in memory.
+ * @param key key to be updated.
+ * @param value value to be inserted.
  */
-void update_entry(Node list);
+void update_entry(Node list, char *key, char *value);
 
 /**
  * @brief Function to insert a new entry in the database.
  * @details Inserts a new entry in the database. Key and value a prompted from the user when the function is called.
  * 
  * @param list The database stored in memory.
+ * @param key the key to be inserted.
+ * @param value the value to be inserted.
  * @return The databse with the new node inserted.
  */
-Node insert_entry(Node list);
+Node insert_entry(Node list, char *key, char *value);
 
 /**
  * @brief Function to delete an entry from the database.
  * @details Deletes an entry from the database. Prompts the user for which entry to delete when function is called.
  * 
  * @param list The database stored in memory.
+ * @param key the key of the entry to be deleted.
  * @return The database with specified entry removed.
  */
-Node delete_entry(Node list);
+Node delete_entry(Node list, char *key);
 
 /**
  * @brief prints the database.
