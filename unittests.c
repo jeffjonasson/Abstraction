@@ -9,14 +9,6 @@ int clean_suite_1(void){
   return 0;
 }
 
-int init_suite_2(void){
-  return 0;
-}
-
-int clean_suite_2(void){
-  return 0;
-}
-
 void TEST_Btree(void){
 
   char *testKey = "Anna";
@@ -104,6 +96,31 @@ void TEST_insert_entry(void){
 
 };
 
+void TEST_delete_entry(void){
+
+  char *testKey = "Anna";
+  char *testValue = "01";
+
+  char *testKeyLeft = "Aaron";
+  char *testValueLeft = "02";
+
+  char *testKeyRight = "Bodil";
+  char *testValueRight = "03";
+
+  testNode = NULL;
+
+  insert_entry(testNode, testKey, testValue);
+  insert_entry(testNode, testKeyLeft, testValueLeft);
+  insert_entry(testNode, testKeyRight, testValueLeft);
+
+  delete_entry(testNode, testKeyLeft);
+  CU_ASSERT(NULL == testNode->left->key);
+  CU_ASSERT(NULL == testNode->left->value);
+  delete_entry(testNode, testKeyRight);
+  CU_ASSERT(NULL == testNode->right->key);
+  CU_ASSERT(NULL == testNode->right->value);
+
+}
 
 int main(){
   CU_pSuite pSuite1 = NULL;
@@ -113,7 +130,7 @@ int main(){
     return CU_get_error();
 
   /* add a suites to the registry */
-  pSuite1 = CU_add_suite("Basic Functions Suite", init_suite_1, clean_suite_1);
+  pSuite1 = CU_add_suite("funcions.c tests", init_suite_1, clean_suite_1);
   if (NULL == pSuite1)
     {
       CU_cleanup_registry();
@@ -121,7 +138,11 @@ int main(){
     }
 
    if (
-    (NULL == CU_add_test(pSuite1, "test if test works", TEST_Btree))
+    (NULL == CU_add_test(pSuite1, "test if btree works", TEST_Btree)) ||
+    (NULL == CU_add_test(pSuite1, "test if query_database works", TEST_query_database)) ||
+    (NULL == CU_add_test(pSuite1, "test if update_entry works", TEST_update_entry)) ||
+    (NULL == CU_add_test(pSuite1, "test if insert_entry works", TEST_insert_entry)) ||
+    (NULL == CU_add_test(pSuite1, "test if delete_entry works", TEST_delete_entry))
   )
     {
       CU_cleanup_registry();
