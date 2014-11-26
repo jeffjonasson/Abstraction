@@ -10,6 +10,16 @@ typedef struct node *Node;
 
 
 /**
+ * @brief a function to read a line of text.
+ * @details reads a line until linebreak or null is found
+ * 
+ * @param dest destination of read line
+ * @param n maximum length of a line
+ * @param source source of the line.
+ */
+void readline(char *dest, int n, FILE *source);
+
+/**
  * @brief A struct for a node in the database
  * @details A node in the database containing the key and a value.
  * 
