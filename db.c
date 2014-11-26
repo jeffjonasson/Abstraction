@@ -37,7 +37,10 @@ int main(int argc, char *argv[]){
     switch(choice){
 
     case 1: 
-      query_database(list);
+      char querybuffer[128];
+      printf("Enter Key:");
+      readline(querybuffer, 128, stdin);
+      query_database(list, querybuffer);
       break;      // Query
     case 2: 
       update_entry(list); 

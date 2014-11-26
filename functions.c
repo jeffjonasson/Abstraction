@@ -49,28 +49,27 @@ Node read_database(char* filename){
 }
 
 
-void query_database(Node list){
- printf("Enter key: ");
- char buffer[128];
+void query_database(Node list, char *query){
  int found = 0;
  Node cursor = list;
-      readline(buffer, 128, stdin);
       puts("Searching database...\n");
       while(!found && cursor != NULL){
-        if(strcmp(buffer, cursor->key) == 0){
+        if(strcmp(query, cursor->key) == 0){
           puts("Found entry:");
           printf("key: %s\nvalue: %s\n", cursor->key, cursor->value);
           found = 1;
-        } else{
-	  if(strcmp(buffer, cursor->key) > 0){
-	    cursor = cursor->right;
-	  } else {
-	    cursor = cursor->left;
-	  }
+        } 
+        else{
+	       if(strcmp(query, cursor->key) > 0){
+	        cursor = cursor->right;
+	       }
+        else {
+	       cursor = cursor->left;
+          }
         }
       }
       if(!found){
-        printf("Could not find an entry matching key \"%s\"!\n", buffer);
+        printf("Could not find an entry matching key \"%s\"!\n", query);
       }
 }
 
