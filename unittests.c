@@ -43,6 +43,67 @@ void TEST_Btree(void){
   CU_ASSERT(strcmp(testValueLeft, testNode->right->value);
 }
 
+void TEST_query_database(void){
+
+  char *testKey = "Anna";
+  char *testValue = "01";
+
+  char *testKeyLeft = "Aaron";
+  char *testValueLeft = "02";
+
+  char *testKeyRight = "Bodil";
+  char *testValueRight = "03";
+
+  /*construcy a binary tree for testing*/
+  Node testNode = btree(testKey, testValue, NULL);
+  Node testNode = btree(testKeyLeft, testValueLeft, testNode);
+  Node testNode = btree(testKeyRight, testValueRight, testNode);
+
+  CU_ASSERT(query_database(testNode, testKey) == 1);
+  CU_ASSERT(query_database(testNode, testKeyLeft) == 1);
+  CU_ASSERT(query_database(testNode, testKeyRight) == 1);
+  CU_ASSERT(query_database(testNode, "asdasd") == 0);
+
+}
+
+void TEST_update_entry(void){
+
+  char *testKey = "Anna";
+  char *testValue2 = "02";
+  char * testValue = "01";
+
+  Node testNode = btree(testKey, testValue NULL);
+  update_entry(testNode, testValue2);
+
+  CU_ASSERT(strcmp(testValue2, testNode->testValue2));
+};
+
+void TEST_insert_entry(void){
+
+  char *testKey = "Anna";
+  char *testValue = "01";
+
+  char *testKeyLeft = "Aaron";
+  char *testValueLeft = "02";
+
+  char *testKeyRight = "Bodil";
+  char *testValueRight = "03";
+
+  testNode = NULL;
+
+  insert_entry(testNode, testKey, testValue);
+  insert_entry(testNode, testKeyLeft, testValueLeft);
+  insert_entry(testNode, testKeyRight, testValueLeft);
+
+  CU_ASSERT(strcmp(testKey, testNode->key));
+  CU_ASSERT(strcmp(testValue, testNode->value));
+  CU_ASSERT(strcmp(testKeyLeft, testNode->left->key));
+  CU_ASSERT(strcmp(testValueLeft, testNode->left->value));
+  CU_ASSERT(strcmp(testKeyight, testNode->right->key));
+  CU_ASSERT(strcmp(testValueLeft, testNode->right->value));
+
+};
+
 
 int main(){
   CU_pSuite pSuite1 = NULL;

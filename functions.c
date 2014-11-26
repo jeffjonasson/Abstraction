@@ -1,12 +1,12 @@
 #include "header.h"
 
-/*struct node{
+struct node{
   char *key;
   char *value;
   struct node *left;
   struct node *right;
 };
-*/
+
 
 Node btree(void *key, void *value, Node newNode){
   if(newNode == NULL){
@@ -49,7 +49,7 @@ Node read_database(char* filename){
 }
 
 
-void query_database(Node list, char *query){
+int query_database(Node list, char *query){
  int found = 0;
  Node cursor = list;
       puts("Searching database...\n");
@@ -71,6 +71,7 @@ void query_database(Node list, char *query){
       if(!found){
         printf("Could not find an entry matching key \"%s\"!\n", query);
       }
+  return found;
 }
 
 
