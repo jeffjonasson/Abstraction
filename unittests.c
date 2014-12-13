@@ -164,10 +164,10 @@ int main(){
 
    if (
     (NULL == CU_add_test(pSuite1, "test btree", TEST_Btree)) ||
-    (NULL == CU_add_test(pSuite1, "test query_database", TEST_query_database)) ||
+    // (NULL == CU_add_test(pSuite1, "test query_database", TEST_query_database)) ||
     (NULL == CU_add_test(pSuite1, "test update_entry", TEST_update_entry)) ||
-    (NULL == CU_add_test(pSuite1, "test insert_entry", TEST_insert_entry)) /*||*/
-    // (NULL == CU_add_test(pSuite1, "test delete_entry", TEST_delete_entry))
+    (NULL == CU_add_test(pSuite1, "test insert_entry", TEST_insert_entry)) ||
+    (NULL == CU_add_test(pSuite1, "test delete_entry", TEST_delete_entry))
   )
     {
       CU_cleanup_registry();
