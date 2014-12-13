@@ -134,14 +134,15 @@ void TEST_delete_entry(void){
   char *testValueRight = "03";
 
   /*construcy a binary tree for testing*/
-  Node testNode3 = btree(testKey, testValue, NULL);
-  Node testNode2 = btree(testKeyLeft, testValueLeft, testNode3);
-  Node testNode1 = btree(testKeyRight, testValueRight, testNode2);
+  Node testNode = btree(testKey, testValue, NULL);
+  insert_entry(testNode, testKeyLeft, testValueLeft);
+  insert_entry(testNode, testKeyRight, testValueRight);
 
-  delete_entry(testNode1, "Aaron");
 
-  CU_ASSERT(NULL == testNode1->left->key);
-  CU_ASSERT(NULL == testNode1->left->value);
+  delete_entry(testNode, "Aaron");
+
+  CU_ASSERT(NULL == testNode->left->key);
+  CU_ASSERT(NULL == testNode->left->value);
   // delete_entry(testNode1, testKeyRight);
   // CU_ASSERT(NULL == testNode1->right->key);
   // CU_ASSERT(NULL == testNode1->right->value);
