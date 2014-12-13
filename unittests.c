@@ -107,29 +107,43 @@ void TEST_insert_entry(void){
 
 }
 
-// void TEST_delete_entry(void){
+void TEST_delete_entry(void){
 
-//   char *testKey = "Anna";
-//   char *testValue = "01";
+  // char *testKey = "Anna";
+  // char *testValue = "01";
 
-//   char *testKeyLeft = "Aaron";
-//   char *testValueLeft = "02";
+  // char *testKeyLeft = "Aaron";
+  // char *testValueLeft = "02";
 
-//   char *testKeyRight = "Bodil";
-//   char *testValueRight = "03";
+  // char *testKeyRight = "Bodil";
+  // char *testValueRight = "03";
 
-//   Node testNode = btree(testKey, testValue, NULL);
+  // Node testNode = btree(testKey, testValue, NULL);
 
-//   insert_entry(testNode, testKey, testValue);
-//   insert_entry(testNode, testKeyLeft, testValueLeft);
-//   insert_entry(testNode, testKeyRight, testValueRight);
+  // insert_entry(testNode, testKey, testValue);
+  // insert_entry(testNode, testKeyLeft, testValueLeft);
+  // insert_entry(testNode, testKeyRight, testValueRight);
 
-//   delete_entry(testNode, testKeyLeft);
-//   CU_ASSERT(NULL == testNode->left->key);
-//   CU_ASSERT(NULL == testNode->left->value);
-//   delete_entry(testNode, testKeyRight);
-//   CU_ASSERT(NULL == testNode->right->key);
-//   CU_ASSERT(NULL == testNode->right->value);
+  char *testKey = "Anna";
+  char *testValue = "01";
+
+  char *testKeyLeft = "Aaron";
+  char *testValueLeft = "02";
+
+  char *testKeyRight = "Bodil";
+  char *testValueRight = "03";
+
+  /*construcy a binary tree for testing*/
+  Node testNode3 = btree(testKey, testValue, NULL);
+  Node testNode2 = btree(testKeyLeft, testValueLeft, testNode3);
+  Node testNode1 = btree(testKeyRight, testValueRight, testNode2);
+
+  delete_entry(testNode1, testKeyLeft);
+  CU_ASSERT(NULL == testNode1->left->key);
+  CU_ASSERT(NULL == testNode1->left->value);
+  // delete_entry(testNode1, testKeyRight);
+  // CU_ASSERT(NULL == testNode1->right->key);
+  // CU_ASSERT(NULL == testNode1->right->value);
 
 }
 
@@ -150,7 +164,7 @@ int main(){
 
    if (
     (NULL == CU_add_test(pSuite1, "test btree", TEST_Btree)) ||
-    // (NULL == CU_add_test(pSuite1, "test query_database", TEST_query_database)) ||
+    (NULL == CU_add_test(pSuite1, "test query_database", TEST_query_database)) ||
     (NULL == CU_add_test(pSuite1, "test update_entry", TEST_update_entry)) ||
     (NULL == CU_add_test(pSuite1, "test insert_entry", TEST_insert_entry)) /*||*/
     // (NULL == CU_add_test(pSuite1, "test delete_entry", TEST_delete_entry))
