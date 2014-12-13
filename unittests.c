@@ -138,7 +138,8 @@ void TEST_delete_entry(void){
   Node testNode2 = btree(testKeyLeft, testValueLeft, testNode3);
   Node testNode1 = btree(testKeyRight, testValueRight, testNode2);
 
-  delete_entry(testNode1, testKeyLeft);
+  delete_entry(testNode1, "Aaron");
+
   CU_ASSERT(NULL == testNode1->left->key);
   CU_ASSERT(NULL == testNode1->left->value);
   // delete_entry(testNode1, testKeyRight);
