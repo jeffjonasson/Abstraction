@@ -45,28 +45,28 @@ void TEST_Btree(void){
 }
 
 
-// void TEST_query_database(void){
+void TEST_query_database(void){
 
-//   char *testKey = "Anna";
-//   char *testValue = "01";
+  char *testKey = "Anna";
+  char *testValue = "01";
 
-//   char *testKeyLeft = "Aaron";
-//   char *testValueLeft = "02";
+  char *testKeyLeft = "Aaron";
+  char *testValueLeft = "02";
 
-//   char *testKeyRight = "Bodil";
-//   char *testValueRight = "03";
+  char *testKeyRight = "Bodil";
+  char *testValueRight = "03";
 
-//   /*construcy a binary tree for testing*/
-//   Node testNode3 = btree(testKey, testValue, NULL);
-//   Node testNode2 = btree(testKeyLeft, testValueLeft, testNode3);
-//   Node testNode1 = btree(testKeyRight, testValueRight, testNode2);
+  /*construcy a binary tree for testing*/
+  Node testNode3 = btree(testKey, testValue, NULL);
+  Node testNode2 = btree(testKeyLeft, testValueLeft, testNode3);
+  Node testNode1 = btree(testKeyRight, testValueRight, testNode2);
 
-//   CU_ASSERT(query_database(testNode1, testKey) == 1);
-//   CU_ASSERT(query_database(testNode1, testKeyLeft) == 1);
-//   CU_ASSERT(query_database(testNode1, testKeyRight) == 1);
-//   CU_ASSERT(query_database(testNode1, "asdasd") == 0);
+  CU_ASSERT(query_database(testNode1, testKey) == 1);
+  CU_ASSERT(query_database(testNode1, testKeyLeft) == 1);
+  CU_ASSERT(query_database(testNode1, testKeyRight) == 1);
+  CU_ASSERT(query_database(testNode1, "asdasd") == 0);
 
-// }
+}
 
 void TEST_update_entry(void){
 
